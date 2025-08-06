@@ -13,6 +13,24 @@ function Form({ adicionarSala }) {
   const handleSubmit = (e) => {
     e.preventDefault(); // Evita o recarregamento da página
 
+    const horarioSubmissao = new Date().toLocaleString(); // Salva data e hora atuais
+
+    const dadosCompletos = {
+      nome,
+      email,
+      cpf,
+      salaDestino,
+      dataNascimento,
+      horarioSubmissao,
+    };
+    console.log("Dados submetidos:", dadosCompletos);
+
+    // Limpa o campo após adicionar
+    setNome("");
+    setEmail("");
+    setCpf("");
+    setDataNascimento("");
+
     adicionarSala(salaDestino); // Chama a função recebida para adicionar a sala
     setSalaDestino(""); // Limpa o campo após adicionar
   };
