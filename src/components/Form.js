@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import "../App.css";
 
-function Form() {
+function Form({ adicionarSala }) {
   // Estado para armazenar os valores dos campos
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
   const [salaDestino, setSalaDestino] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
+
+  // Função chamada ao enviar o formulário
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Evita o recarregamento da página
+
+    adicionarSala(salaDestino); // Chama a função recebida para adicionar a sala
+    setSalaDestino(""); // Limpa o campo após adicionar
+  };
 
   //Máscara do CPF
   const formatCpf = (value) => {
@@ -19,13 +27,6 @@ function Form() {
       .replace(/(\d{3})(\d)/, "$1.$2")
       .replace(/(\d{3})(\d)/, "$1.$2")
       .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-  };
-
-  // Função para lidar com o envio do formulário
-  const handleSubmit = (e) => {
-    e.preventDefault(); // evita o recarregamento da página
-    // Aqui você pode adicionar o que deseja fazer com os dados ao enviar o formulário
-    console.log({ nome, email, cpf, salaDestino, dataNascimento });
   };
 
   return (
